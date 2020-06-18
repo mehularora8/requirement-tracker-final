@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Notes" representedClassName="Notes" syncable="YES" codeGenerationType="class">
+        <attribute name="notes" optional="YES" attributeType="String"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TakenClass" inverseName="notes" inverseEntity="TakenClass"/>
+        <relationship name="req" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Requirement" inverseName="reqNotes" inverseEntity="Requirement"/>
+    </entity>
+    <entity name="Requirement" representedClassName="Requirement" syncable="YES" codeGenerationType="class">
+        <attribute name="completed" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="needed" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="taken" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="coursesFulfilling" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TakenClass" inverseName="reqFulfilled" inverseEntity="TakenClass"/>
+        <relationship name="reqNotes" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Notes" inverseName="req" inverseEntity="Notes"/>
+    </entity>
+    <entity name="TakenClass" representedClassName="TakenClass" syncable="YES" codeGenerationType="class">
+        <attribute name="code" optional="YES" attributeType="String"/>
+        <attribute name="completed" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="quarter" optional="YES" attributeType="String"/>
+        <attribute name="units" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="year" optional="YES" attributeType="String"/>
+        <relationship name="notes" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Notes" inverseName="course" inverseEntity="Notes"/>
+        <relationship name="reqFulfilled" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Requirement" inverseName="coursesFulfilling" inverseEntity="Requirement"/>
+    </entity>
+    <elements>
+        <element name="TakenClass" positionX="-362.234375" positionY="106.12109375" width="128" height="178"/>
+        <element name="Notes" positionX="-66" positionY="-182.89453125" width="128" height="88"/>
+        <element name="Requirement" positionX="-36" positionY="9" width="128" height="133"/>
+    </elements>
+</model>
